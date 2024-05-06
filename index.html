@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Clock</title>
+</head>
+<body>
+    <div class="container">
+        <div class="items">
+            <div class="item-js">
+                <img src="data:image/png;base64,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" alt="">
+            </div>
+        </div>
+        <div class="screen">
+            <div id="timeHourL" class="time">
+                <div class="off segment A"></div>
+                <div class="off segment B"></div>
+                <div class="off segment C"></div>
+                <div class="off segment D"></div>
+                <div class="off segment E"></div>
+                <div class="off segment F"></div>
+                <div class="off segment G"></div>
+            </div>
+            <div id="timeHourR" class="time">
+                <div class="off segment A"></div>
+                <div class="off segment B"></div>
+                <div class="off segment C"></div>
+                <div class="off segment D"></div>
+                <div class="off segment E"></div>
+                <div class="off segment F"></div>
+                <div class="off segment G"></div>
+            </div>
+            <div class="time--dots">
+                <div class="time--dot off"></div>
+                <div class="time--dot off"></div>
+            </div>
+            <div id="timeMinuteL" class="time">
+                <div class="off segment A"></div>
+                <div class="off segment B"></div>
+                <div class="off segment C"></div>
+                <div class="off segment D"></div>
+                <div class="off segment E"></div>
+                <div class="off segment F"></div>
+                <div class="off segment G"></div>
+            </div>
+            <div id="timeMinuteR" class="time">
+                <div class="off segment A"></div>
+                <div class="off segment B"></div>
+                <div class="off segment C"></div>
+                <div class="off segment D"></div>
+                <div class="off segment E"></div>
+                <div class="off segment F"></div>
+                <div class="off segment G"></div>
+            </div>
+            <div class="time--dots">
+                <div class="time--dot off"></div>
+                <div class="time--dot off"></div>
+            </div>
+            <div id="timeSecondL" class="time">
+                <div class="off segment A"></div>
+                <div class="off segment B"></div>
+                <div class="off segment C"></div>
+                <div class="off segment D"></div>
+                <div class="off segment E"></div>
+                <div class="off segment F"></div>
+                <div class="off segment G"></div>
+            </div>
+            <div id="timeSecondR" class="time">
+                <div class="off segment A"></div>
+                <div class="off segment B"></div>
+                <div class="off segment C"></div>
+                <div class="off segment D"></div>
+                <div class="off segment E"></div>
+                <div class="off segment F"></div>
+                <div class="off segment G"></div>
+            </div>
+            <div class="oof-button">
+                <input id="oofCursor" type="checkbox" class="cursor-action"/>
+                <label class="cursor" for="oofCursor">
+                    
+                </label>
+            </div>
+            <div class="chrono-panel">
+                <button id="chronoPlay" class="active">
+                    <i class="bi bi-play-fill"></i>
+                </button>
+                <button id="chronoPause" class="d-none">
+                    <i class="bi bi-pause-fill"></i>
+                </button>
+                <button id="chronoRestart">
+                    <i class="bi bi-arrow-clockwise"></i>
+                </button>
+            </div>
+        </div>
+        <div class="control-panel">
+            <ul class="li">
+                <label for="">Heure</label>
+                <input id="modeHour" type="radio" name="mode" value="hour" checked/>
+            </ul>
+            <ul class="li">
+                <label for="modeChrono">Chronomètre</label>
+                <input id="modeChrono" type="radio" name="mode" value="chrono"/>
+            </ul>
+            <ul class="li">
+                <label for="modeWeather">Météo</label>
+                <input id="modeWeather" type="radio" name="mode" value="weath"/>
+            </ul>
+        </div>
+    </div>
+    <script type="module" src="./js/index.js"></script>
+</body>
+</html>
