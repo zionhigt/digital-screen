@@ -1,109 +1,24 @@
 
-import SegmentNumber from "../components/number.js";
+import { NumberScreenMixin, IntervalRefreshMixin } from "./mixins/utils.js";
 
-class NumberScreenMixin {
-    constructor(segments) {
-        this.segments = {};
-        for (let segment of segments) {
-            this.segmentNumber(segment);
+class InDocument {
+    /* show | off */
+    show(arg="show") {
+        const $elm = this.$elm;
+        if (arg == "show") {
+            $elm.classList.remove("d-none");
         }
-
-        this._dots = null;
-        this.dots.off();
-
-    }
-
-    get length() {
-        return Object.keys(this.segments).length;
-    }
-
-    get dots() {
-        if (!this._dots) {
-            this._dots = {
-                items: document.querySelectorAll(".time--dots .time--dot"),
-                isOn: false,
-                on() {
-                    if (this.isOn) return;
-                    if (this.items && this.items.length > 0) {
-                        this.items.forEach(function(item) {
-                            item.classList.remove("off");
-                            this.isOn = true;
-                        }.bind(this))
-                    }
-                },
-                off() {
-                    if (!this.isOn) return;
-                    if (this.items && this.items.length > 0) {
-                        this.items.forEach(function(item) {
-                            item.classList.add("off");
-                            this.isOn = false;
-                        }.bind(this))
-                    }
-                },
-            }
+        if (arg == "hide") {
+            $elm.classList.add("d-none");
         }
-        return this._dots;
-    }
-
-    segmentNumber(selector) {
-        if (!this.segments.hasOwnProperty(selector)) {
-            this.segments[selector] = new SegmentNumber(selector);
-        }
-        return this.segments[selector];
-    }
-
-    displayNumber(numbers) {
-        this.dots.on();
-        const segments = Object.values(this.segments);
-        const  segmentsLength = segments.length;
-        numbers = numbers.slice(numbers.length - segmentsLength, numbers.length);
-        for (let i = 0; i < numbers.length; i++) {
-            let number = numbers[i];
-            number = Number.parseInt(number);
-            if (!Number.isNaN(number)) {
-                if (i < segmentsLength) {
-                    segments[i].show(number);
-                }
-            }
-        }
-    }
-
-    off() {
-        this.dots.off();
-        Object.values(this.segments).forEach(function(segment) {
-            segment.off();
-        });
     }
 }
 
-class IntervalRefreshMixin {
-    constructor(callback, interval=1000) {
-        this.callback = callback;
-        this.timer = null;
-        this.interval = interval;
-
-    }
-
-    start() {
-        if (!this.timer) {
-            if (this.callback && typeof this.callback === "function") {
-                this.callback();
-            }
-            this.timer = setInterval(this.callback, this.interval);
-
-        }
-    }
-
-    stop() {
-        if (this.timer) {
-            clearInterval(this.timer, this.callback);
-        }
-        this.timer = null;
-    }
-}
-
-class HourScreen {
+class HourScreen extends InDocument {
     constructor(refreshInterval=1000) {
+        super();
+        this.selector = "#hourPanel";
+        this.$elm = document.querySelector(this.selector);
         this.timer = new IntervalRefreshMixin(this.refresh.bind(this), refreshInterval);
         this.segments = new NumberScreenMixin([
             "#timeHourL",
@@ -112,15 +27,14 @@ class HourScreen {
             "#timeMinuteR",
             "#timeSecondL",
             "#timeSecondR",
-        ])
+        ]);
     }
-    
 
     off() {
         this.segments.off();
         this.timer.stop();
     }
-
+    
     start() {
         this.timer.start();
     }
@@ -213,7 +127,7 @@ class ChronoPanel {
         setTimeout(function() {
             this.element.classList.add("front");
             this.element.classList.remove("back");
-        }.bind(this), 800);
+        }.bind(this), 400);
     }
     
     off() {
@@ -273,7 +187,6 @@ class ChronoScreen extends HourScreen {
     }
 
     start() {
-        // super.start();
         this.panel.start();
         this.init();
     }
@@ -284,19 +197,46 @@ class ChronoScreen extends HourScreen {
     }
 }
 
+class WeatherScreen extends InDocument {
+    constructor(refreshInterval=1000) {
+        super();
+        this.selector = "#weatherPanel";
+        this.$elm = document.querySelector(this.selector);
+        //this.timer = new IntervalRefreshMixin(this.refresh.bind(this), refreshInterval);
+        
+    }
+    
+    off() {
+        //this.timer.stop();
+    }
+
+    start() {
+        //this.timer.start();
+    }
+
+    refresh() {
+        
+    }
+
+}
+
 export class Screen {
-    constructor() {
+    constructor(initMode="hour") {
         this.screens = {
             "hour": new HourScreen(),
             "chrono": new ChronoScreen(),
+            "weath": new WeatherScreen(),
         };
-        this.currentMode = "hour";
+        this.currentMode = initMode;
 
         document.addEventListener("mode:set", function(event) {
             if (event.detail) {
                 const mode = event.detail.mode;
-                if(!this.screens.hasOwnProperty(mode)) {throw new Error("Not suported mode : " + mode)};
-                this.setMode(mode);
+                try {
+                    this.setMode(mode);
+                } catch(err) {
+                    this.fail(err);
+                }
                 if (event.detail.callback && typeof event.detail.callback == "function") {
                     event.detail.callback();
                 }
@@ -304,19 +244,40 @@ export class Screen {
         }.bind(this))
     }
 
+    fail(error) {
+        document.dispatchEvent(
+            new CustomEvent("error", {
+                detail: {
+                    error,
+                } 
+            })
+        )
+    }
+
+    isModeSuported(mode) {
+        return this.screens.hasOwnProperty(mode);
+
+    }
+    get screen() {
+        return this.screens[this.currentMode];
+    }
+
     setMode(mode) {
+        if(!this.isModeSuported(mode)) throw new Error("Not suported mode : " + mode);
         Object.values(this.screens).forEach(function(screen) {
             screen.off();
+            screen.show("hide");
         })
         this.currentMode = mode;
+        this.screen.show("show");
     }
 
     start() {
-        this.screens[this.currentMode].start();
+        this.screen.start();
     }
 
     off() {
-        this.screens[this.currentMode].off();
+        this.screen.off();
     }
 
     
