@@ -2,6 +2,11 @@ import { Screen } from "./lib/mode_manager.js";
 
 let isOn = false;
 
+document.addEventListener("error", function(event) {
+    if (event?.detail?.error) {
+        console.error(event.detail.error);
+    }
+});
 document.querySelector(".oof-button #oofCursor")
 .addEventListener("change", function(event) {
     isOn = event.target.checked;
@@ -25,8 +30,6 @@ document.querySelectorAll('input[name="mode"]')
         }
     })
 })
-
-
 
 const screen = new Screen();
 
