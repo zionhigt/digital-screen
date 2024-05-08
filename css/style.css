@@ -6,6 +6,14 @@
 body {
     margin: 0;
 }
+
+i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
 .container {
     position: relative;
 }
@@ -13,9 +21,11 @@ body {
     position: relative;
     border-radius: 50px;
     padding: 70px;
-    padding-bottom: 90px;
+    max-height: 370px;
+    padding-bottom: 20px;
     background-color: var(--bgc-screen);
     display: flex;
+    flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
     gap: 2rem;
@@ -25,10 +35,52 @@ body {
     
 }
 
+.container #weatherPanel.panel {
+    width: 960px;
+    height: 230px;
+}
+
+.container #hourPanel.panel {
+    position: relative;
+    background-color: var(--bgc-screen);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    justify-self: flex-start;
+    
+}
+
+.container .control-panel {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.container .control-panel ul#actionsList {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 14px;
+    align-items: center;
+}
+
+.container .control-panel ul#actionsList li {
+    color: #929292;
+    font-size: 20px;
+    list-style-type: none;
+}
+input[name="mode"] {
+    display: none;
+}
+input[name="mode"]:checked + label {
+    color: #0fa;
+}
+
 .container .screen .oof-button {
     --cursor-size: 26px;
     --slider-size: 60px;
-    position: absolute;
+    /*position: absolute; */
     bottom: 20px;
     height: var(--cursor-size);
     background-color: #929292;
@@ -39,7 +91,9 @@ body {
 }
 .container .screen .oof-button .cursor {
     box-sizing: border-box;
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
     background-color: #fff;
     width: var(--cursor-size);
@@ -50,12 +104,20 @@ body {
     transform-origin: top left;
     transition: transform 0.2s 0s ease-in;
 }
+.container .screen .oof-button .cursor i{
+    color: #000;
+    font-weight: bold;
+    font-size: 20px;
+}
+.container .screen .oof-button .cursor-action:checked + label.cursor i {
+    color: #0fa;
+}
 .container .screen .oof-button .cursor-action:checked + label.cursor {
     --calc-translate: calc(var(--cursor-size) + calc(var(--slider-size) - calc(2 * var(--cursor-size))));
     transform: translateX(var(--calc-translate));
 }
 
-.container .screen .oof-button .cursor:before, 
+/*.container .screen .oof-button .cursor:before, 
 .container .screen .oof-button .cursor:after {
     box-sizing: border-box;
     display: block;
@@ -81,7 +143,7 @@ body {
     left: calc(calc(var(--cursor-size) - 2px) / 2);
     border-width: 1px;
     
-}
+}*/
 .cursor-action {
     display: none;
 }
@@ -118,7 +180,7 @@ body {
     border-bottom-right-radius: 20px;
     transform: translateY(-100px);
     z-index: -2;
-    transition: transform 0.8s 0.0s linear;
+    transition: transform 0.4s 0.0s linear;
 }
 .container .screen .chrono-panel.front {
     z-index: 2;
@@ -142,8 +204,7 @@ body {
 }
 
 .container .screen .chrono-panel button i {
-    width: 30px;
-    height: 30px;
+    font-size: 20px;
     pointer-events: none;
 }
 .container {
@@ -301,5 +362,5 @@ body {
 }
 
 .d-none {
-    display: none;
+    display: none!important;
 }
