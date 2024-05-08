@@ -16,99 +16,104 @@
             </div>
         </div>
         <div class="screen">
-            <div id="timeHourL" class="time">
-                <div class="off segment A"></div>
-                <div class="off segment B"></div>
-                <div class="off segment C"></div>
-                <div class="off segment D"></div>
-                <div class="off segment E"></div>
-                <div class="off segment F"></div>
-                <div class="off segment G"></div>
+            <div id="hourPanel" class="panel">
+                <div id="timeHourL" class="time">
+                    <div class="off segment A"></div>
+                    <div class="off segment B"></div>
+                    <div class="off segment C"></div>
+                    <div class="off segment D"></div>
+                    <div class="off segment E"></div>
+                    <div class="off segment F"></div>
+                    <div class="off segment G"></div>
+                </div>
+                <div id="timeHourR" class="time">
+                    <div class="off segment A"></div>
+                    <div class="off segment B"></div>
+                    <div class="off segment C"></div>
+                    <div class="off segment D"></div>
+                    <div class="off segment E"></div>
+                    <div class="off segment F"></div>
+                    <div class="off segment G"></div>
+                </div>
+                <div class="time--dots">
+                    <div class="time--dot off"></div>
+                    <div class="time--dot off"></div>
+                </div>
+                <div id="timeMinuteL" class="time">
+                    <div class="off segment A"></div>
+                    <div class="off segment B"></div>
+                    <div class="off segment C"></div>
+                    <div class="off segment D"></div>
+                    <div class="off segment E"></div>
+                    <div class="off segment F"></div>
+                    <div class="off segment G"></div>
+                </div>
+                <div id="timeMinuteR" class="time">
+                    <div class="off segment A"></div>
+                    <div class="off segment B"></div>
+                    <div class="off segment C"></div>
+                    <div class="off segment D"></div>
+                    <div class="off segment E"></div>
+                    <div class="off segment F"></div>
+                    <div class="off segment G"></div>
+                </div>
+                <div class="time--dots">
+                    <div class="time--dot off"></div>
+                    <div class="time--dot off"></div>
+                </div>
+                <div id="timeSecondL" class="time">
+                    <div class="off segment A"></div>
+                    <div class="off segment B"></div>
+                    <div class="off segment C"></div>
+                    <div class="off segment D"></div>
+                    <div class="off segment E"></div>
+                    <div class="off segment F"></div>
+                    <div class="off segment G"></div>
+                </div>
+                <div id="timeSecondR" class="time">
+                    <div class="off segment A"></div>
+                    <div class="off segment B"></div>
+                    <div class="off segment C"></div>
+                    <div class="off segment D"></div>
+                    <div class="off segment E"></div>
+                    <div class="off segment F"></div>
+                    <div class="off segment G"></div>
+                </div>
             </div>
-            <div id="timeHourR" class="time">
-                <div class="off segment A"></div>
-                <div class="off segment B"></div>
-                <div class="off segment C"></div>
-                <div class="off segment D"></div>
-                <div class="off segment E"></div>
-                <div class="off segment F"></div>
-                <div class="off segment G"></div>
+            <div id="weatherPanel" class="panel">
+                weather
             </div>
-            <div class="time--dots">
-                <div class="time--dot off"></div>
-                <div class="time--dot off"></div>
+            <div class="control-panel">
+                <div class="oof-button">
+                    <input id="oofCursor" type="checkbox" class="cursor-action" autocomplete="off"/>
+                    <label class="cursor" for="oofCursor"><i class="bi bi-power"></i></label>
+                </div>
+                <div class="chrono-panel">
+                    <button id="chronoPlay" class="active">
+                        <i class="bi bi-play-fill"></i>
+                    </button>
+                    <button id="chronoPause" class="d-none">
+                        <i class="bi bi-pause-fill"></i>
+                    </button>
+                    <button id="chronoRestart">
+                        <i class="bi bi-arrow-clockwise"></i>
+                    </button>
+                </div>
+                <ul id="actionsList">
+                    <li>
+                        <input id="modeHour" type="radio" name="mode" value="hour" checked autocomplete="off"/>
+                        <label for="modeHour" title="Heure"><i class="bi bi-clock-fill"></i></label>
+                    </li>
+                    <li>
+                        <input id="modeChrono" type="radio" name="mode" value="chrono" autocomplete="off"/>
+                        <label for="modeChrono" title="Chronomètre"><i class="bi bi-hourglass-split"></i></label>
+                    </li>
+                    <li>
+                        <input id="modeWeather" type="radio" name="mode" value="weath" autocomplete="off"/>
+                        <label for="modeWeather" title="Météo"><i class="bi bi-brightness-high-fill"></i></label>
+                    </li>
+                </ul>
             </div>
-            <div id="timeMinuteL" class="time">
-                <div class="off segment A"></div>
-                <div class="off segment B"></div>
-                <div class="off segment C"></div>
-                <div class="off segment D"></div>
-                <div class="off segment E"></div>
-                <div class="off segment F"></div>
-                <div class="off segment G"></div>
-            </div>
-            <div id="timeMinuteR" class="time">
-                <div class="off segment A"></div>
-                <div class="off segment B"></div>
-                <div class="off segment C"></div>
-                <div class="off segment D"></div>
-                <div class="off segment E"></div>
-                <div class="off segment F"></div>
-                <div class="off segment G"></div>
-            </div>
-            <div class="time--dots">
-                <div class="time--dot off"></div>
-                <div class="time--dot off"></div>
-            </div>
-            <div id="timeSecondL" class="time">
-                <div class="off segment A"></div>
-                <div class="off segment B"></div>
-                <div class="off segment C"></div>
-                <div class="off segment D"></div>
-                <div class="off segment E"></div>
-                <div class="off segment F"></div>
-                <div class="off segment G"></div>
-            </div>
-            <div id="timeSecondR" class="time">
-                <div class="off segment A"></div>
-                <div class="off segment B"></div>
-                <div class="off segment C"></div>
-                <div class="off segment D"></div>
-                <div class="off segment E"></div>
-                <div class="off segment F"></div>
-                <div class="off segment G"></div>
-            </div>
-            <div class="oof-button">
-                <input id="oofCursor" type="checkbox" class="cursor-action"/>
-                <label class="cursor" for="oofCursor">
-                    
-                </label>
-            </div>
-            <div class="chrono-panel">
-                <button id="chronoPlay" class="active">
-                    <i class="bi bi-play-fill"></i>
-                </button>
-                <button id="chronoPause" class="d-none">
-                    <i class="bi bi-pause-fill"></i>
-                </button>
-                <button id="chronoRestart">
-                    <i class="bi bi-arrow-clockwise"></i>
-                </button>
-            </div>
-        </div>
-        <div class="control-panel">
-            <ul class="li">
-                <label for="">Heure</label>
-                <input id="modeHour" type="radio" name="mode" value="hour" checked/>
-            </ul>
-            <ul class="li">
-                <label for="modeChrono">Chronomètre</label>
-                <input id="modeChrono" type="radio" name="mode" value="chrono"/>
-            </ul>
-            <ul class="li">
-                <label for="modeWeather">Météo</label>
-                <input id="modeWeather" type="radio" name="mode" value="weath"/>
-            </ul>
         </div>
     </div>
     <script type="module" src="./js/index.js"></script>
