@@ -20,6 +20,6 @@
   "homepage": "https://github.com/zionhigt/digital-screen#readme",
   "dependencies": {
     "express": "^4.19.2",
-    "node-fetch": "^3.3.2"
+    "node-fetch-commonjs": "^3.3.2"
   }
 }
