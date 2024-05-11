@@ -8,7 +8,7 @@ const config = require("./config.json");
 const PORT = process.env.PORT || config.port || 3000;
 
 server.on("listening", function() {
-    console.log("Serve rlistening on : " + PORT);
+    console.log("Server listening on : " + PORT);
 });
 
 server.on("error", function(err) {
